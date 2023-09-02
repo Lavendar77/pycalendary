@@ -8,22 +8,22 @@ choices = [
     'add 2 weeks',
 ]
 
-moments = [
-    'seconds',
-    'second',
-    'minute',
-    'minutes',
-    'hour',
-    'hours',
-    'day',
-    'days',
-    'week',
-    'weeks',
-    'month',
-    'months',
-    'year',
-    'years',
-]
+moments = {
+    'seconds': 'seconds',
+    'second': 'seconds',
+    'minute': 'minutes',
+    'minutes': 'minutes',
+    'hour': 'hours',
+    'hours': 'hours',
+    'day': 'days',
+    'days': 'days',
+    'week': 'weeks',
+    'weeks': 'weeks',
+    'month': 'months',
+    'months': 'months',
+    'year': 'years',
+    'years': 'years',
+}
 
 def main():
     print("--- Welcome to Calendary ---\n")
@@ -59,8 +59,17 @@ def main():
             exit(1)
 
     # Collect the command trail
-    command = askCommandTrail(f"What do you want to calculate? E.g. {random.choice(choices)}: ")
-    print(command)
+    [symbol, number, moment] = askCommandTrail(f"What do you want to calculate? E.g. {random.choice(choices)}: ")
+
+    # Final calculation
+    moment = {
+        moments.get(moment): number
+    }
+    if symbol == "add":
+        print(f"{entry_date} + {number} {moment} is {entry_date + timedelta(**moment)}")
+    else:
+        print(f"{entry_date} - {number} {moment} is {entry_date - timedelta(**moment)}")
+
 
 def askCommandTrail(question):
     command_input = input(question)
@@ -84,7 +93,7 @@ def askCommandTrail(question):
         number = int(command[1])
 
         # Validate the moment
-        if command[2] not in moments:
+        if command[2] not in moments.keys():
             raise ValueError("Invalid moment")
         moment = command[2]
     except Exception as err:
