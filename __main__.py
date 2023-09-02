@@ -72,6 +72,10 @@ def main():
     realmoment = moments.get(moment)
 
     # Final calculation
+    param = {
+        realmoment: number
+    }
+
     if realmoment not in timedeltamoments:
         if realmoment == 'months':
             param = {
@@ -81,10 +85,6 @@ def main():
             param = {
                 'days': number * 365
             }
-
-    param = {
-        realmoment: number
-    }
 
     if symbol == "add":
         print(f"{symbol}ing {number} {moment} to {entry_date} = {entry_date + timedelta(**param)}")
