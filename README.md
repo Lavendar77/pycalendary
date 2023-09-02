@@ -10,4 +10,4 @@ python3 .
 
 ## Todo
 
-`timedelta()`'s max named argument is "days".
+* [X] `timedelta()` has a limited number of keyword arguments.

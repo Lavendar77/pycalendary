@@ -8,6 +8,15 @@ choices = [
     'add 2 weeks',
 ]
 
+timedeltamoments = [
+    'microseconds',
+    'milliseconds',
+    'seconds',
+    'minutes',
+    'hours',
+    'days',
+    'weeks',
+]
 moments = {
     'seconds': 'seconds',
     'second': 'seconds',
@@ -60,15 +69,27 @@ def main():
 
     # Collect the command trail
     [symbol, number, moment] = askCommandTrail(f"What do you want to calculate? E.g. {random.choice(choices)}: ")
+    realmoment = moments.get(moment)
 
     # Final calculation
-    moment = {
-        moments.get(moment): number
+    if realmoment not in timedeltamoments:
+        if realmoment == 'months':
+            param = {
+                'days': number * 30
+            }
+        elif realmoment == 'years':
+            param = {
+                'days': number * 365
+            }
+
+    param = {
+        realmoment: number
     }
+
     if symbol == "add":
-        print(f"{entry_date} + {number} {moment} is {entry_date + timedelta(**moment)}")
+        print(f"{symbol}ing {number} {moment} to {entry_date} = {entry_date + timedelta(**param)}")
     else:
-        print(f"{entry_date} - {number} {moment} is {entry_date - timedelta(**moment)}")
+        print(f"{symbol}ing {number} {moment} to {entry_date} = {entry_date - timedelta(**param)}")
 
 
 def askCommandTrail(question):
