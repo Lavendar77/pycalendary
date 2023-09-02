@@ -13,4 +13,4 @@ python3 .
 ## Todo
 
 * [X] `timedelta()` has a limited number of keyword arguments.
-* [ ] Wrong calculations.
+* [X] Wrong calculations.

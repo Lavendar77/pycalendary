@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 import random
 
 choices = [
@@ -72,24 +73,23 @@ def main():
     realmoment = moments.get(moment)
 
     # Final calculation
-    param = {
-        realmoment: number
-    }
 
     if realmoment not in timedeltamoments:
         if realmoment == 'months':
-            param = {
-                'days': number * 30
-            }
+            answer = relativedelta(months=number)
         elif realmoment == 'years':
-            param = {
-                'days': number * 365
-            }
+            answer = relativedelta(years=number)
+    else:
+        param = {
+            realmoment: number
+        }
+        answer = timedelta(**param)
+
 
     if symbol == "add":
-        print(f"{symbol}ing {number} {moment} to {entry_date} = {entry_date + timedelta(**param)}")
+        print(f"{symbol.title()}ing {number} {moment} to {entry_date} is {entry_date + answer}")
     else:
-        print(f"{symbol}ing {number} {moment} to {entry_date} = {entry_date - timedelta(**param)}")
+        print(f"{symbol.title()}ing {number} {moment} to {entry_date} is {entry_date - answer}")
 
 
 def askCommandTrail(question):
