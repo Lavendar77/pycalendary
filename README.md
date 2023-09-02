@@ -2,6 +2,8 @@
 
 A simple Calendar Calculator built with 🐍
 
+![1693683591190](image/README/1693683591190.png)
+
 ## Usage
 
 ```bash
