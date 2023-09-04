@@ -2,14 +2,14 @@ from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 import random
 
-choices = [
+choices: list[str] = [
     'add 4 years',
     'subtract 4 years',
     'subtract 5 days',
     'add 2 weeks',
 ]
 
-timedeltamoments = [
+timedeltamoments: list[str] = [
     'microseconds',
     'milliseconds',
     'seconds',
@@ -18,7 +18,7 @@ timedeltamoments = [
     'days',
     'weeks',
 ]
-moments = {
+moments: dict[str, str] = {
     'seconds': 'seconds',
     'second': 'seconds',
     'minute': 'minutes',
@@ -73,7 +73,6 @@ def main():
     realmoment = moments.get(moment)
 
     # Final calculation
-
     if realmoment not in timedeltamoments:
         if realmoment == 'months':
             answer = relativedelta(months=number)
@@ -92,7 +91,7 @@ def main():
         print(f"{symbol.title()}ing {number} {moment} to {entry_date} is {entry_date - answer}")
 
 
-def askCommandTrail(question):
+def askCommandTrail(question: str) -> list[str|int]:
     command_input = input(question)
     command = command_input.split(" ")
 
