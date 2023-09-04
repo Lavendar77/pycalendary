@@ -15,3 +15,4 @@ python3 .
 * [X] `timedelta()` has a limited number of keyword arguments.
 * [X] Wrong calculations.
 * [ ] Move to virtual environment.
+* [ ] Add types to properties and functions.
